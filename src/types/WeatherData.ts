@@ -26,4 +26,5 @@ export interface WeatherData {
 export type FieldType = {
     country?: string;
     timestamp?: string;
+    countryCode?: string;
 };

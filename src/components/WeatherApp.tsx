@@ -31,7 +31,7 @@ export const WeatherApp = () => {
       setLastValidData(data);
       if (!isFirstLoad.current) {
         const timestamp = dayjs().format("DD-MM-YYYY hh:mma");
-        setWeatherList((prev) => [{ country: data.name, timestamp }, ...prev]);
+        setWeatherList((prev) => [{ country: data.name, timestamp, countryCode: data.sys.country }, ...prev]);
         setErrorMessage(null);
       } else {
         isFirstLoad.current = false;
@@ -53,11 +53,11 @@ export const WeatherApp = () => {
   };
 
   return (
-    <Flex vertical gap={24} style={{ width: 700 }}>
+    <Flex vertical style={{ width: "48vw" }}>
       <WeatherForm form={form} onFinish={onFinish} />
       {errorMessage && <Alert message={errorMessage} type="error" showIcon />}
       {isLoading ? (
-        <Flex justify="center" align="center" style={{ padding: 24 }}>
+        <Flex justify="center" align="center">
           <Spin tip="Loading weather data..." size="large" aria-label="Loading weather data" />
         </Flex>
       ) : lastValidData ? (

@@ -1,0 +1,13 @@
+.card {
+  background: #1a1a1a4d;
+  border: 0;
+  padding: 0 !important;
+
+  .ant-card-head {
+    border-bottom: 0;
+  }
+
+  .ant-card-body {
+    padding: 0 20px 0 20px;
+  }
+}

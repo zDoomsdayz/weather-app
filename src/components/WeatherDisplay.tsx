@@ -1,8 +1,9 @@
-import { Card, Flex, Image, Typography } from "antd";
+import { Flex, Image, Typography } from "antd";
 import dayjs from "dayjs";
 import { SearchHistory } from "./SearchHistory";
 import type { FieldType, WeatherData } from "../types/WeatherData";
 import sun from "../assets/sun.png";
+import CustomCard from "../custom/CustomCard/CustomCard";
 
 interface WeatherDisplayProps {
   data?: WeatherData;
@@ -12,16 +13,20 @@ interface WeatherDisplayProps {
 }
 
 export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }: WeatherDisplayProps) => {
+  const currentTemp = data?.main.temp || 0;
+  const minTemp = data?.main.temp_min || 0;
+  const maxTemp = data?.main.temp_max || 0;
+
   return (
-    <Card>
-      <Flex vertical gap={24}>
+    <CustomCard style={{ height: "100vh", marginTop: 88 }}>
+      <Flex vertical gap={24} style={{ paddingTop: 22, paddingLeft: 16 }}>
         <Flex vertical>
           <Flex justify="space-between">
             <Flex vertical align="flex-start">
               <Typography>Today's Weather</Typography>
-              <Typography.Title style={{ margin: 0 }}>{data?.main.temp}°</Typography.Title>
+              <Typography.Title style={{ margin: 0, fontSize: 50 }}>{currentTemp.toFixed(0)}°</Typography.Title>
               <Typography>
-                H: {data?.main.temp_max}° L: {data?.main.temp_min}°
+                H: {maxTemp.toFixed(0)}° L: {minTemp.toFixed(0)}°
               </Typography>
             </Flex>
             <Image
@@ -47,6 +52,6 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
         </Flex>
         <SearchHistory weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} />
       </Flex>
-    </Card>
+    </CustomCard>
   );
 };
