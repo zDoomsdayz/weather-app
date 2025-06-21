@@ -12,6 +12,7 @@ export const WeatherApp = () => {
   const [weatherList, setWeatherList] = useState<FieldType[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [country, setCountry] = useState<string>("Singapore");
+  const [lastValidData, setLastValidData] = useState<WeatherData | null>(null);
   const isFirstLoad = useRef(true);
 
   const { data, isError, isLoading, error } = useQuery<WeatherData, Error>({
@@ -27,6 +28,7 @@ export const WeatherApp = () => {
 
   useEffect(() => {
     if (data && country) {
+      setLastValidData(data);
       if (!isFirstLoad.current) {
         const timestamp = dayjs().format("DD-MM-YYYY hh:mma");
         setWeatherList((prev) => [{ country: data.name, timestamp }, ...prev]);
@@ -58,9 +60,9 @@ export const WeatherApp = () => {
         <Flex justify="center" align="center" style={{ padding: 24 }}>
           <Spin tip="Loading weather data..." size="large" aria-label="Loading weather data" />
         </Flex>
-      ) : (
-        <WeatherDisplay data={data} weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} />
-      )}
+      ) : lastValidData ? (
+        <WeatherDisplay data={lastValidData} weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} />
+      ) : null}
     </Flex>
   );
 };
