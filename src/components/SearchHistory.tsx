@@ -1,5 +1,6 @@
 import { Button, Card, Flex, List, Typography } from "antd";
 import type { FieldType } from "../types/WeatherData";
+import { DeleteFilled, SearchOutlined } from "@ant-design/icons";
 
 interface SearchHistoryProps {
   weatherList: FieldType[];
@@ -16,9 +17,11 @@ export const SearchHistory = ({ weatherList, handleSearch, handleDelete }: Searc
         renderItem={(item, index) => (
           <List.Item
             actions={[
-              <Button onClick={() => handleSearch(item)}>Search</Button>,
-              <Button danger onClick={() => handleDelete(index)}>
-                Delete
+              <Button onClick={() => handleSearch(item)}>
+                <SearchOutlined />
+              </Button>,
+              <Button onClick={() => handleDelete(index)}>
+                <DeleteFilled />
               </Button>,
             ]}
           >
