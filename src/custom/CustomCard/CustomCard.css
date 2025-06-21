@@ -8,6 +8,22 @@
   }
 
   .ant-card-body {
-    padding: 0 20px 0 20px;
+    padding: 0;
   }
+}
+
+.card.small {
+  padding: 21px !important;
+  border-radius: 16px;
+  background: #1a1a1a80;
+}
+
+.card.medium {
+  padding: 23px 20px 0 20px !important;
+  border-radius: 24px;
+}
+
+.card.large {
+  padding: 46px 40px 0 40px !important;
+  border-radius: 40px;
 }

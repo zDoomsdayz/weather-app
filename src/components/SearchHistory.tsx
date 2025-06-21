@@ -12,25 +12,28 @@ interface SearchHistoryProps {
 
 export const SearchHistory = ({ weatherList, handleSearch, handleDelete }: SearchHistoryProps) => {
   return (
-    <CustomCard title={<Typography>Search History</Typography>} style={{ textAlign: "left", height: "100vh" }}>
-      <Flex vertical gap={18}>
-        {weatherList.length === 0 && <Typography style={{ textAlign: "center" }}>No Record</Typography>}
-        {weatherList.map((item, index) => (
-          <CustomCard style={{ height: 60, justifyContent: "center" }}>
-            <Flex key={index} style={{ paddingTop: 14, alignItems: "center" }} gap={16}>
-              <Flex style={{ justifyContent: "space-between", width: "100%" }}>
-                <Typography>
-                  {item.country}, {item.countryCode}
-                </Typography>
-                <Typography style={{ opacity: 0.4 }}>{item.timestamp}</Typography>
+    <CustomCard styleSize="medium" style={{ textAlign: "left", height: "100vh" }}>
+      <Flex vertical gap={26}>
+        <Typography>Search History</Typography>
+        <Flex vertical gap={18}>
+          {weatherList.length === 0 && <Typography style={{ textAlign: "center" }}>No Record</Typography>}
+          {weatherList.map((item, index) => (
+            <CustomCard styleSize="small" style={{ justifyContent: "center" }}>
+              <Flex key={index} style={{ alignItems: "center" }} gap={16}>
+                <Flex style={{ justifyContent: "space-between", width: "100%" }}>
+                  <Typography>
+                    {item.country}, {item.countryCode}
+                  </Typography>
+                  <Typography style={{ opacity: 0.4 }}>{item.timestamp}</Typography>
+                </Flex>
+                <Flex gap={8} style={{ opacity: 0.4 }}>
+                  <CustomButton styleVariant="round" onClick={() => handleSearch(item)} icon={<SearchOutlined />} />
+                  <CustomButton styleVariant="round" onClick={() => handleDelete(index)} icon={<DeleteFilled />} />
+                </Flex>
               </Flex>
-              <Flex gap={8} style={{ opacity: 0.4 }}>
-                <CustomButton styleVariant="round" onClick={() => handleSearch(item)} icon={<SearchOutlined />} />
-                <CustomButton styleVariant="round" onClick={() => handleDelete(index)} icon={<DeleteFilled />} />
-              </Flex>
-            </Flex>
-          </CustomCard>
-        ))}
+            </CustomCard>
+          ))}
+        </Flex>
       </Flex>
     </CustomCard>
   );

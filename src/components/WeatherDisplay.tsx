@@ -18,8 +18,8 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
   const maxTemp = data?.main.temp_max || 0;
 
   return (
-    <CustomCard style={{ height: "100vh", marginTop: 88 }}>
-      <Flex vertical gap={24} style={{ paddingTop: 22, paddingLeft: 16, paddingRight: 16 }}>
+    <CustomCard styleSize="large" style={{ height: "100vh", marginTop: 88 }}>
+      <Flex vertical gap={24}>
         <Flex vertical>
           <Flex justify="space-between">
             <Flex vertical align="flex-start">
