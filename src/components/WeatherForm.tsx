@@ -1,7 +1,8 @@
-import { Button, Flex, Form, Input } from "antd";
+import { Flex, Form, Input } from "antd";
 import type { FormInstance, FormProps } from "antd";
 import type { FieldType } from "../types/WeatherData";
 import { SearchOutlined } from "@ant-design/icons";
+import CustomButton from "../custom/CustomButton/CustomButton";
 
 interface WeatherFormProps {
   onFinish: (values: FieldType) => void;
@@ -20,9 +21,9 @@ export const WeatherForm = ({ form, onFinish }: WeatherFormProps) => {
           <Input placeholder="Enter country" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <CustomButton styleVariant="square" htmlType="submit">
             <SearchOutlined />
-          </Button>
+          </CustomButton>
         </Form.Item>
       </Flex>
     </Form>

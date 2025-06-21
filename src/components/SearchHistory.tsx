@@ -1,7 +1,8 @@
-import { Button, Flex, Typography } from "antd";
+import { Flex, Typography } from "antd";
 import type { FieldType } from "../types/WeatherData";
 import { DeleteFilled, SearchOutlined } from "@ant-design/icons";
 import CustomCard from "../custom/CustomCard/CustomCard";
+import CustomButton from "../custom/CustomButton/CustomButton";
 
 interface SearchHistoryProps {
   weatherList: FieldType[];
@@ -21,11 +22,11 @@ export const SearchHistory = ({ weatherList, handleSearch, handleDelete }: Searc
                 <Typography>
                   {item.country}, {item.countryCode}
                 </Typography>
-                <Typography>{item.timestamp}</Typography>
+                <Typography style={{ opacity: 0.4 }}>{item.timestamp}</Typography>
               </Flex>
-              <Flex gap={8}>
-                <Button onClick={() => handleSearch(item)} icon={<SearchOutlined />} />
-                <Button onClick={() => handleDelete(index)} icon={<DeleteFilled />} />
+              <Flex gap={8} style={{ opacity: 0.4 }}>
+                <CustomButton styleVariant="round" onClick={() => handleSearch(item)} icon={<SearchOutlined />} />
+                <CustomButton styleVariant="round" onClick={() => handleDelete(index)} icon={<DeleteFilled />} />
               </Flex>
             </Flex>
           </CustomCard>

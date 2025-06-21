@@ -1,0 +1,11 @@
+.button.round {
+  background: none;
+  border: 2;
+  border-radius: 50%;
+}
+
+.button.square {
+  background: #28124d;
+  radius: 20px;
+  border: 0;
+}

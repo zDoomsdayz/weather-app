@@ -19,7 +19,7 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
 
   return (
     <CustomCard style={{ height: "100vh", marginTop: 88 }}>
-      <Flex vertical gap={24} style={{ paddingTop: 22, paddingLeft: 16 }}>
+      <Flex vertical gap={24} style={{ paddingTop: 22, paddingLeft: 16, paddingRight: 16 }}>
         <Flex vertical>
           <Flex justify="space-between">
             <Flex vertical align="flex-start">
@@ -42,9 +42,9 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
             />
           </Flex>
           <Flex gap={8} justify="space-between">
-            <Typography>
+            <Typography.Text strong>
               {data?.name}, {data?.sys.country}
-            </Typography>
+            </Typography.Text>
             <Typography>{weatherList[weatherList.length - 1]?.timestamp || dayjs().format("DD-MM-YYYY hh:mma")}</Typography>
             <Typography>Humidity: {data?.main.humidity}%</Typography>
             <Typography>{data?.weather[0]?.main}</Typography>

@@ -1,11 +1,15 @@
 import { Card, type CardProps } from "antd";
+import classNames from "classnames";
 import "./CustomCard.css";
 
-// @ts-expect-error empty interface
-interface CustomCardProps extends CardProps {}
+type StyleSize = "small" | "medium" | "large";
 
-const CustomCard: React.FC<CustomCardProps> = ({ ...cardProps }) => {
-  return <Card className="card" {...cardProps} />;
+interface CustomCardProps extends CardProps {
+  styleSize?: StyleSize;
+}
+
+const CustomCard: React.FC<CustomCardProps> = ({ styleSize = "small", ...cardProps }) => {
+  return <Card className={classNames("card", styleSize)} {...cardProps} />;
 };
 
 export default CustomCard;
