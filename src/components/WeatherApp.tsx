@@ -61,6 +61,7 @@ export const WeatherApp = () => {
 
   const handleSearch = (item: FieldType) => {
     form.setFieldsValue({ country: item.country });
+    form.submit();
   };
 
   return (
