@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { SearchHistory } from "./SearchHistory";
 import type { FieldType, WeatherData } from "../types/WeatherData";
 import sun from "../assets/sun.png";
+import cloud from "../assets/cloud.png";
 import CustomCard from "../custom/CustomCard/CustomCard";
 import CustomText from "../custom/CustomText/CustomText";
 import { useMediaQuery } from "react-responsive";
@@ -13,6 +14,12 @@ interface WeatherDisplayProps {
   handleSearch: (item: FieldType) => void;
   handleDelete: (index: number) => void;
 }
+
+const getWeatherImage = (weather: string): string => {
+  // if weather belongs to these category return cloud
+  const keywords = ["rain", "thunder", "cloud"];
+  return keywords.some((keyword) => weather.toLowerCase().includes(keyword)) ? cloud : sun;
+};
 
 export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }: WeatherDisplayProps) => {
   const currentTemp = data?.main.temp.toFixed(0) || 0;
@@ -26,9 +33,11 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
+  const weatherImage = getWeatherImage(weather);
+
   return (
     <div style={{ width: "100%", position: "relative" }}>
-      <img src={sun} className="weather-image" alt="sun" />
+      <img src={weatherImage} className="weather-image" alt="weather" />
       <CustomCard styleSize="large" style={{ height: "100vh", marginTop: 88, position: "relative" }}>
         <Flex vertical gap={24}>
           <Flex vertical={!isMobile} justify="space-between">
