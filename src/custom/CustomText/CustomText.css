@@ -1,0 +1,16 @@
+.text {
+  word-break: normal;
+}
+
+.text.small {
+  font-size: 10px;
+}
+
+.text.medium {
+  font-size: 16px;
+}
+
+.text.large {
+  font-size: 81px;
+  line-height: 1;
+}

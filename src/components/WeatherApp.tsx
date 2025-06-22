@@ -23,12 +23,16 @@ export const WeatherApp = () => {
   });
 
   useEffect(() => {
+    // when the fetch is unsuccessful
     if (isError && error) setErrorMessage(error.message);
   }, [isError, error]);
 
   useEffect(() => {
-    if (data && country) {
+    // when the fetch is successful
+    if (data) {
       setLastValidData(data);
+
+      // add into search history after the first load
       if (!isFirstLoad.current) {
         const timestamp = dayjs().format("DD-MM-YYYY hh:mma");
         setWeatherList((prev) => [{ country: data.name, timestamp, countryCode: data.sys.country }, ...prev]);
@@ -37,15 +41,17 @@ export const WeatherApp = () => {
         isFirstLoad.current = false;
       }
     }
-  }, [data, country]);
+  }, [data]);
 
   const onFinish = (values: FieldType) => {
+    // make sure the form is not empty
     if (values.country?.trim()) setCountry(values.country);
     else setErrorMessage("The country field cannot be empty.");
   };
 
   const handleDelete = (index: number) => {
-    setWeatherList((prev) => prev.filter((_, i) => i !== index));
+    // update weather list by filtering out the item at the specified index.
+    setWeatherList((list) => list.filter((_, i) => i !== index));
   };
 
   const handleSearch = (item: FieldType) => {

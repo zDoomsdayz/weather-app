@@ -1,5 +1,6 @@
-import { Input, Typography, type InputProps } from "antd";
+import { Input, type InputProps } from "antd";
 import "./CustomInput.css";
+import CustomText from "../CustomText/CustomText";
 
 interface CustomInputProps extends InputProps {
   title?: string;
@@ -8,7 +9,7 @@ interface CustomInputProps extends InputProps {
 const CustomInput: React.FC<CustomInputProps> = ({ title, ...props }) => {
   return (
     <>
-      <Typography style={{ position: "absolute", zIndex: 1, left: 22, top: 3, fontSize: 10, color: "#FFFFFF66" }}>{title}</Typography>
+      <CustomText text={title} textSize="small" style={{ position: "absolute", zIndex: 1, left: 22, top: 3, color: "#FFFFFF66" }} />
       <Input size="large" className={"input"} {...props} />
     </>
   );
