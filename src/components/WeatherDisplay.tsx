@@ -50,7 +50,7 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
               </Flex>
             </Flex>
             {isMobile ? (
-              <Flex vertical gap={8} align="flex-end" justify="flex-end">
+              <Flex vertical align="flex-end" justify="flex-end">
                 <CustomText text={weather} />
                 <CustomText text={`Humidity: ${humidity}`} />
                 <CustomText text={timestamp} />

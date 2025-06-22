@@ -24,6 +24,22 @@
 }
 
 .card.large {
-  padding: 46px 40px 0 40px !important;
+  padding: 46px 50px 0 50px !important;
   border-radius: 40px;
+}
+
+@media (max-width: 1000px) {
+  .card.small {
+    padding: 10px !important;
+  }
+
+  .card.medium {
+    padding: 22px 20px 0 20px !important;
+    border-radius: 24px;
+  }
+
+  .card.large {
+    padding: 20px 26px 0 26px !important;
+    border-radius: 20px;
+  }
 }
