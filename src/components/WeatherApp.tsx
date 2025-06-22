@@ -68,13 +68,8 @@ export const WeatherApp = () => {
     <Flex vertical className="weather-app-container">
       <WeatherForm form={form} onFinish={onFinish} />
       {errorMessage && <Alert message={<CustomText text={errorMessage} style={{ color: "black" }} />} type="error" showIcon />}
-      {isLoading ? (
-        <Flex justify="center" align="center">
-          <Spin tip="Loading weather data..." size="large" aria-label="Loading weather data" />
-        </Flex>
-      ) : lastValidData ? (
-        <WeatherDisplay data={lastValidData} weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} />
-      ) : null}
+      {isLoading && <Spin tip={<CustomText text="Loading weather data..." />} fullscreen />}
+      {lastValidData ? <WeatherDisplay data={lastValidData} weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} /> : null}
     </Flex>
   );
 };
