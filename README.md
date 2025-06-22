@@ -1,54 +1,32 @@
-# React + TypeScript + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive weather application built with **React**, **TypeScript**, and **Ant Design**. It fetches real-time weather data for user-specified locations, displays search history, and provides a clean, mobile-friendly user interface with reusable custom components.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Real-Time Weather Data**  
+  Search for current weather by country or city using an external API (e.g., OpenWeatherMap). Displays temperature, humidity, wind speed, and more.
+- **Responsive Design**  
+  Seamlessly adapts to desktop and mobile screens with flexible layouts and touch-friendly inputs, utilizing **react-responsive** for enhanced mobile support.
 
-## Expanding the ESLint configuration
+- **Custom Components**  
+  Reusable components located in `src/custom/` ensure consistent styling and modularity.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Search History**  
+  Tracks and displays previous searches with options to re-search or delete entries.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Error Handling**  
+  Handles invalid inputs (e.g., `!1237uasdAIO`) gracefully by displaying the last valid weather data along with error alerts.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Modern UI**  
+  Implements a clean and intuitive interface using **Ant Design**, ensuring accessibility and ease of use.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech Stack
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **React**: Frontend framework for building the user interface.
+- **TypeScript**: Enforces type safety across the application.
+- **Ant Design**: Provides robust and customizable UI components.
+- **TanStack Query**: Efficient data fetching, caching, and state management.
+- **Day.js**: Lightweight library for date and time formatting.
+- **react-responsive**: Enhances mobile responsiveness.
+- **Vite**: Fast build tool and development server for modern web projects.
