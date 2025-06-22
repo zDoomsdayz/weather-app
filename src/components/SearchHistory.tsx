@@ -21,11 +21,11 @@ export const SearchHistory = ({ weatherList, handleSearch, handleDelete }: Searc
           {weatherList.map((item, index) => (
             <CustomCard key={index} styleSize="small" style={{ justifyContent: "center" }}>
               <Flex key={index} style={{ alignItems: "center" }} gap={16}>
-                <Flex style={{ justifyContent: "space-between", width: "100%" }}>
+                <Flex className="search-history-item">
                   <CustomText text={`${item.country}, ${item.countryCode}`} />
                   <CustomText text={`${item.timestamp}`} style={{ opacity: 0.4 }} />
                 </Flex>
-                <Flex gap={8} style={{ opacity: 0.4 }}>
+                <Flex gap={10} style={{ opacity: 0.4 }}>
                   <CustomButton styleVariant="round" onClick={() => handleSearch(item)} icon={<SearchOutlined />} />
                   <CustomButton styleVariant="round" onClick={() => handleDelete(index)} icon={<DeleteFilled />} />
                 </Flex>

@@ -38,3 +38,44 @@
 .read-the-docs {
   color: #888;
 }
+
+.weather-form-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.weather-app-container {
+  width: 48vw;
+}
+
+.search-history-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.weather-image {
+  width: 300px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .weather-app-container {
+    width: 91vw;
+  }
+
+  .search-history-item {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .weather-form-container {
+    gap: 10px;
+  }
+  .weather-image {
+    width: 200px;
+  }
+}

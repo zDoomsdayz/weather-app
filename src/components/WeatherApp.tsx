@@ -65,7 +65,7 @@ export const WeatherApp = () => {
   };
 
   return (
-    <Flex vertical style={{ width: "48vw" }}>
+    <Flex vertical className="weather-app-container">
       <WeatherForm form={form} onFinish={onFinish} />
       {errorMessage && <Alert message={<CustomText text={errorMessage} style={{ color: "black" }} />} type="error" showIcon />}
       {isLoading ? (

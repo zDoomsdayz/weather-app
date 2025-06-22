@@ -1,10 +1,11 @@
-import { Flex, Image } from "antd";
+import { Flex } from "antd";
 import dayjs from "dayjs";
 import { SearchHistory } from "./SearchHistory";
 import type { FieldType, WeatherData } from "../types/WeatherData";
 import sun from "../assets/sun.png";
 import CustomCard from "../custom/CustomCard/CustomCard";
 import CustomText from "../custom/CustomText/CustomText";
+import { useMediaQuery } from "react-responsive";
 
 interface WeatherDisplayProps {
   data?: WeatherData;
@@ -23,37 +24,40 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
   const humidity = data?.main.humidity || 0;
   const weather = data?.weather[0]?.main || "N/A";
 
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
-    <CustomCard styleSize="large" style={{ height: "100vh", marginTop: 88 }}>
-      <Flex vertical gap={24}>
-        <Flex vertical>
-          <Flex justify="space-between">
-            <Flex vertical align="flex-start">
-              <CustomText text="Today's Weather" />
-              <CustomText text={`${currentTemp}°`} textSize="large" strong />
-              <CustomText text={`H: ${maxTemp}° L: ${minTemp}`} />
+    <div style={{ width: "100%", position: "relative" }}>
+      <img src={sun} className="weather-image" alt="sun" />
+      <CustomCard styleSize="large" style={{ height: "100vh", marginTop: 88, position: "relative" }}>
+        <Flex vertical gap={24}>
+          <Flex vertical={!isMobile} justify="space-between">
+            <Flex justify="space-between">
+              <Flex vertical align="flex-start">
+                <CustomText text="Today's Weather" />
+                <CustomText text={`${currentTemp}°`} textSize="large" strong />
+                <CustomText text={`H: ${maxTemp}° L: ${minTemp}`} />
+                {isMobile && <CustomText text={`${country}, ${countryCode}`} strong />}
+              </Flex>
             </Flex>
-            <Image
-              src={sun}
-              preview={false}
-              width={271}
-              style={{
-                position: "absolute",
-                top: -110,
-                right: 0,
-                zIndex: 1,
-              }}
-            />
+            {isMobile ? (
+              <Flex vertical gap={8} align="flex-end" justify="flex-end">
+                <CustomText text={weather} />
+                <CustomText text={`Humidity: ${humidity}`} />
+                <CustomText text={timestamp} />
+              </Flex>
+            ) : (
+              <Flex gap={8} justify="space-between">
+                <CustomText text={`${country}, ${countryCode}`} strong />
+                <CustomText text={timestamp} />
+                <CustomText text={`Humidity: ${humidity}`} />
+                <CustomText text={weather} />
+              </Flex>
+            )}
           </Flex>
-          <Flex gap={8} justify="space-between">
-            <CustomText text={`${country}, ${countryCode}`} strong />
-            <CustomText text={timestamp} />
-            <CustomText text={`Humidity: ${humidity}`} />
-            <CustomText text={weather} />
-          </Flex>
+          <SearchHistory weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} />
         </Flex>
-        <SearchHistory weatherList={weatherList} handleSearch={handleSearch} handleDelete={handleDelete} />
-      </Flex>
-    </CustomCard>
+      </CustomCard>
+    </div>
   );
 };

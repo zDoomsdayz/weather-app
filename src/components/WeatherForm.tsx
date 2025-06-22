@@ -17,7 +17,7 @@ export const WeatherForm = ({ form, onFinish }: WeatherFormProps) => {
 
   return (
     <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
-      <Flex justify="space-between" gap={24}>
+      <Flex justify="space-between" className="weather-form-container">
         <Form.Item<FieldType> name="country" style={{ width: "100%" }}>
           <CustomInput title="Country" placeholder="Enter country" />
         </Form.Item>
