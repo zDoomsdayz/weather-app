@@ -12,7 +12,7 @@ const CustomInput: React.FC<CustomInputProps> = ({ title, ...props }) => {
   return (
     <>
       <CustomText text={title} textSize="small" style={{ position: "absolute", zIndex: 1, left: isMobile ? 11 : 22, top: 3, color: "#FFFFFF66" }} />
-      <Input size="large" className={"input"} {...props} />
+      <Input size={isMobile ? "middle" : "large"} className={"input"} {...props} />
     </>
   );
 };

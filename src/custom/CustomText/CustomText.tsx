@@ -3,7 +3,7 @@ import classNames from "classnames";
 import "./CustomText.css";
 import type { TextProps } from "antd/es/typography/Text";
 
-type Size = "small" | "medium" | "large";
+type Size = "small" | "small-medium" | "medium" | "large";
 
 interface CustomTextProps extends TextProps {
   textSize?: Size;

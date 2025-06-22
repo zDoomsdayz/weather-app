@@ -23,7 +23,7 @@ export const SearchHistory = ({ weatherList, handleSearch, handleDelete }: Searc
               <Flex key={index} style={{ alignItems: "center" }} gap={16}>
                 <Flex className="search-history-item">
                   <CustomText text={`${item.country}, ${item.countryCode}`} />
-                  <CustomText text={`${item.timestamp}`} style={{ opacity: 0.4 }} />
+                  <CustomText text={`${item.timestamp}`} textSize="small-medium" style={{ opacity: 0.4 }} />
                 </Flex>
                 <Flex gap={10} style={{ opacity: 0.4 }}>
                   <CustomButton styleVariant="round" onClick={() => handleSearch(item)} icon={<SearchOutlined />} />
