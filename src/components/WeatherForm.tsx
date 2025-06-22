@@ -4,6 +4,7 @@ import type { FieldType } from "../types/WeatherData";
 import { SearchOutlined } from "@ant-design/icons";
 import CustomButton from "../custom/CustomButton/CustomButton";
 import CustomInput from "../custom/CustomInput/CustomInput";
+import { useMediaQuery } from "react-responsive";
 
 interface WeatherFormProps {
   onFinish: (values: FieldType) => void;
@@ -15,6 +16,8 @@ export const WeatherForm = ({ form, onFinish }: WeatherFormProps) => {
     console.log("Failed:", errorInfo);
   };
 
+  const isMobile = useMediaQuery({ query: "(max-width: 1000px)" });
+
   return (
     <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
       <Flex justify="space-between" className="weather-form-container">
@@ -23,7 +26,7 @@ export const WeatherForm = ({ form, onFinish }: WeatherFormProps) => {
         </Form.Item>
         <Form.Item>
           <CustomButton styleVariant="square" htmlType="submit">
-            <SearchOutlined style={{ fontSize: "34px" }} />
+            <SearchOutlined style={{ fontSize: isMobile ? "22px" : "34px" }} />
           </CustomButton>
         </Form.Item>
       </Flex>

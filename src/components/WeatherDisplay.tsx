@@ -31,7 +31,7 @@ export const WeatherDisplay = ({ data, weatherList, handleSearch, handleDelete }
   const humidity = data?.main.humidity || 0;
   const weather = data?.weather[0]?.main || "N/A";
 
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 1000px)" });
 
   const weatherImage = getWeatherImage(weather);
 

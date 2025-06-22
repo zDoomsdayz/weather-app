@@ -14,3 +14,18 @@
   font-size: 81px;
   line-height: 1;
 }
+
+@media (max-width: 1000px) {
+  .text.small {
+    font-size: 8px;
+  }
+
+  .text.medium {
+    font-size: 14px;
+  }
+
+  .text.large {
+    font-size: 50px;
+    line-height: 1;
+  }
+}
