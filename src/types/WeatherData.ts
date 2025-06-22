@@ -28,3 +28,15 @@ export type FieldType = {
     timestamp?: string;
     countryCode?: string;
 };
+
+interface AxiosErrorResponse {
+    data?: {
+        message?: string;
+    };
+}
+
+export interface AxiosError extends Error {
+    code: string;
+    status: number;
+    response?: AxiosErrorResponse;
+}

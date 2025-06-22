@@ -5,8 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchWeather } from "../api/weatherApi";
 import { WeatherForm } from "./WeatherForm";
 import { WeatherDisplay } from "./WeatherDisplay";
-import type { FieldType, WeatherData } from "../types/WeatherData";
-
+import type { AxiosError, FieldType, WeatherData } from "../types/WeatherData";
+import CustomText from "../custom/CustomText/CustomText";
+import { toSentenceCase } from "../utils/utils";
 export const WeatherApp = () => {
   const [form] = Form.useForm();
   const [weatherList, setWeatherList] = useState<FieldType[]>([]);
@@ -15,7 +16,7 @@ export const WeatherApp = () => {
   const [lastValidData, setLastValidData] = useState<WeatherData | null>(null);
   const isFirstLoad = useRef(true);
 
-  const { data, isError, isLoading, error } = useQuery<WeatherData, Error>({
+  const { data, isError, isLoading, error } = useQuery<WeatherData, AxiosError>({
     queryKey: ["weather", country],
     queryFn: () => fetchWeather(country),
     enabled: !!country,
@@ -24,7 +25,11 @@ export const WeatherApp = () => {
 
   useEffect(() => {
     // when the fetch is unsuccessful
-    if (isError && error) setErrorMessage(error.message);
+    if (isError && error) {
+      // try to extract message from error.response if it exists
+      const errMsg = error?.response?.data?.message || "Not found";
+      setErrorMessage(toSentenceCase(errMsg));
+    }
   }, [isError, error]);
 
   useEffect(() => {
@@ -61,7 +66,7 @@ export const WeatherApp = () => {
   return (
     <Flex vertical style={{ width: "48vw" }}>
       <WeatherForm form={form} onFinish={onFinish} />
-      {errorMessage && <Alert message={errorMessage} type="error" showIcon />}
+      {errorMessage && <Alert message={<CustomText text={errorMessage} style={{ color: "black" }} />} type="error" showIcon />}
       {isLoading ? (
         <Flex justify="center" align="center">
           <Spin tip="Loading weather data..." size="large" aria-label="Loading weather data" />
